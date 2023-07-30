@@ -1,4 +1,4 @@
-const About = () => (
+const About: React.FC = () => (
   <section className="content">
     <h2 className="subtitle">About This Site</h2>
     <p>This site only wants the best for its citizens</p>

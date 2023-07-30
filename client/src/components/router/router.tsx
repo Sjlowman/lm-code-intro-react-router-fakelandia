@@ -7,7 +7,7 @@ import NotFound from "../not_found/not_found";
 import MainLayout from "../layouts/main_layout";
 import Help from "../help/help";
 
-const Router = () => (
+const Router: React.FC = () => (
   <Routes>
     <Route path="/" element={<MainLayout />}>
       <Route index element={<Home />} />
@@ -21,5 +21,3 @@ const Router = () => (
 );
 
 export default Router;
-
-//const Home : React.FC = () => <>Home!</>;

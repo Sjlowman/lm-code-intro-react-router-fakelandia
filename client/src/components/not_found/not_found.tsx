@@ -1,4 +1,4 @@
-const NotFound = () => (
+const NotFound: React.FC = () => (
   <>
     <h2 className="subtitle has-text-danger">NOT FOUND, GO BACK!</h2>
     <p>

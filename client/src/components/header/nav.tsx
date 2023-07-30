@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-const Nav = () => (
+const Nav: React.FC = () => (
   <nav
     className="is-flex is-flex-grow-1 is-align-items-center"
     style={{ width: "100%" }}

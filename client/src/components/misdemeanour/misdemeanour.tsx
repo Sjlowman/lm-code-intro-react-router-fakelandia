@@ -1,4 +1,4 @@
-const Misdemeanour = () => (
+const Misdemeanour: React.FC = () => (
   <section className="content">
     <h2 className="subtitle">This is why you must behave yourself</h2>
     <p>
