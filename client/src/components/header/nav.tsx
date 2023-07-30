@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 const Nav: React.FC = () => (
   <nav
@@ -10,7 +11,12 @@ const Nav: React.FC = () => (
       className="is-flex is-flex-direction-row is-justify-content-space-evenly is-justify-content-space-evenly"
     >
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          Home
+        </NavLink>
       </li>
       <li>
         <NavLink to="/misdemeanour">Misdemeanours</NavLink>
