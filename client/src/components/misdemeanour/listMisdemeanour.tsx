@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { LOCAL_API_BASE_URL } from "../../api/config/config";
 //import { useParams, Link } from "react-router-dom";
-import MisdemeanourList from "./displayMisdemeanour";
+//import MisdemeanourList from "./displayMisdemeanour";
 import { MisdemeanourKind } from "../../../types/misdemeanours.types";
 
 interface Misdemeanour {
@@ -17,18 +17,11 @@ const ListMisdemeanours: React.FC = () => {
 
   //const { categoryId } = useParams();
 
-  console.log(LOCAL_API_BASE_URL + "/misdemeanours/5");
   useEffect(() => {
     const fetchMisdemeanours = async () => {
       try {
         const response = await axios.get(
-          LOCAL_API_BASE_URL + "/misdemeanours/2"
-          /*{
-            params: {
-             // numMisdemeanours: numberMisdemeanours,
-              3
-            },
-          } */
+          LOCAL_API_BASE_URL + "/misdemeanours/6"
         );
         setMisdemeanours(response.data.misdemeanours);
       } catch (error) {
@@ -47,9 +40,26 @@ const ListMisdemeanours: React.FC = () => {
         List of misdemeanours
       </div>
       <div className="flex flex-col gap-y-12;">
-        {misdemeanours.map((misdemeanour) => (
-          <MisdemeanourList misdemeanour={misdemeanour} />
-        ))}
+        <table>
+          <thead>
+            <tr className=" text-darkest font-bold text-center p-12">
+              <th>Citizen Id:</th>
+              <th>Misdemeanour:</th>
+              <th>Date:</th>
+            </tr>
+          </thead>
+          <tbody>
+            {misdemeanours.map((misdemeanour) => {
+              return (
+                <tr>
+                  <td>{misdemeanour.citizenId}</td>
+                  <td>{misdemeanour.misdemeanour}</td>
+                  <td>{misdemeanour.date}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </section>
   );
