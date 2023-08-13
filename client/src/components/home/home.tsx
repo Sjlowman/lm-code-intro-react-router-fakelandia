@@ -2,7 +2,7 @@
 
 const Home: React.FC = () => (
   <section className="content">
-    <h2 className="subtitle">Welcome</h2>
+    <h2 className=" text-red-400">Welcome</h2>
     <p>
       Welcome to the <em>Fakelandia</em> Crimewatch
     </p>

@@ -11,11 +11,14 @@
     "test-client": "cd client && npm test",
     "test-server": "cd server && npm test",
     "start": "concurrently -n client,server -c cyan,magenta \"npm run start-client\" \"npm run start-server\"",
-    "start-client": "cd client && npm run dev"
+    "start-client": "cd client && npm run dev",
+    "start-tailwind": "npx tailwindcss -i ./client/src/index.css -o ./client/src/output.css --watch",
+    "start-all": "concurrently -n client,server,tailwind -c cyan,magenta,yellow \"npm run start-client\" \"npm run start-server\" \"npm run start-tailwind\""
   },
   "dependencies": {
     "@types/express": "^4.17.14",
     "@types/node": "^18.11.18",
+    "axios": "^1.4.0",
     "concurrently": "^7.6.0",
     "cors": "^2.8.5",
     "eslint": "^8.29.0",
@@ -37,6 +40,9 @@
   },
   "homepage": "https://github.com/techreturners/lm-code-intro-react-router-fakelandia#readme",
   "devDependencies": {
-    "@types/cors": "^2.8.13"
+    "@types/cors": "^2.8.13",
+    "autoprefixer": "^10.4.15",
+    "postcss": "^8.4.27",
+    "tailwindcss": "^3.3.3"
   }
 }
