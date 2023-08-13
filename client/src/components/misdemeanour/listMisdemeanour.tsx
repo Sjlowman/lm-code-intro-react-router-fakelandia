@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { LOCAL_API_BASE_URL } from "../../api/config/config";
 //import { useParams, Link } from "react-router-dom";
-import { MisdemeanourList } from "./displayMisdemeanour";
+import MisdemeanourList from "./displayMisdemeanour";
 import { MisdemeanourKind } from "../../../types/misdemeanours.types";
 
 interface Misdemeanour {
@@ -48,7 +48,7 @@ const ListMisdemeanours: React.FC = () => {
       </div>
       <div className="flex flex-col gap-y-12;">
         {misdemeanours.map((misdemeanour) => (
-          <div key={misdemeanour.citizenId}>{misdemeanour.date}</div>
+          <MisdemeanourList misdemeanour={misdemeanour} />
         ))}
       </div>
     </section>
