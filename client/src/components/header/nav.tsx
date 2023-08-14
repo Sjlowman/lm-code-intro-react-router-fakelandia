@@ -1,24 +1,54 @@
+import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Nav: React.FC = () => (
-  <div className="relative w-full mt-6 max-w-sm overflow-y-scroll ">
-    <nav
-      className="is-flex is-flex-grow-1 is-align-items-center"
-      style={{ width: "100%" }}
-    >
-      <NavLink to="/">Home</NavLink>
+const Nav = () => {
+  const activeLink = " text-purple-600";
+  const normalLink = "";
 
-      <NavLink to="/misdemeanour">Misdemeanours</NavLink>
+  return (
+    <React.Fragment>
+      <section>
+        <div className="flex w-screen">
+          <nav className="text-bold pt-6 flex-row grid grid-cols-5 w-screen text-center justify-center text-2xl  pb-4">
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? activeLink : normalLink)}
+            >
+              Home
+            </NavLink>
 
-      <NavLink to="/confession">Confessions</NavLink>
+            <NavLink
+              to="/allmisdemeanours"
+              className={({ isActive }) => (isActive ? activeLink : normalLink)}
+            >
+              Misdemeanours
+            </NavLink>
 
-      <NavLink to="/about">About</NavLink>
+            <NavLink
+              to="/confession"
+              className={({ isActive }) => (isActive ? activeLink : normalLink)}
+            >
+              Confess To Us
+            </NavLink>
 
-      <NavLink to="/help">Help</NavLink>
+            <NavLink
+              to="/about"
+              className={({ isActive }) => (isActive ? activeLink : normalLink)}
+            >
+              About
+            </NavLink>
 
-      <NavLink to="/allmisdemeanours">All Misdemeanours</NavLink>
-    </nav>
-  </div>
-);
+            <NavLink
+              to="/help"
+              className={({ isActive }) => (isActive ? activeLink : normalLink)}
+            >
+              Help
+            </NavLink>
+          </nav>
+        </div>
+      </section>
+    </React.Fragment>
+  );
+};
 
 export default Nav;

@@ -1,5 +1,6 @@
 /* import { useState } from "react"; */
 import "./App.css";
+import "./output.css";
 import { BrowserRouter } from "react-router-dom";
 import Router from "./components/router/router";
 

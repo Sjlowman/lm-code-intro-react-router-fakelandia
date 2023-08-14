@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { LOCAL_API_BASE_URL } from "../../api/config/config";
 //import { useParams, Link } from "react-router-dom";
-//import MisdemeanourList from "./displayMisdemeanour";
+import MisdemeanourList from "./displayMisdemeanour";
 import { MisdemeanourKind } from "../../../types/misdemeanours.types";
 
 interface Misdemeanour {
@@ -36,28 +36,27 @@ const ListMisdemeanours: React.FC = () => {
 
   return (
     <section className="w-full">
-      <div className="pt-5 h-100 text-2xl font-bold text-center">
-        List of misdemeanours
+      <div className="pt-5 pb-7 h-100 text-xl  text-center">
+        These are the misdemeanours offloaded by our responsible citizens so
+        far. Will you join them in confessing? It's very uplifting
       </div>
-      <div className="flex flex-col gap-y-12;">
-        <table>
+      <div className="px-12 flex flex-col gap-y-12;">
+        <table className="table-fixed border-separate border border-slate-400">
+          <caption className="font-bold text-2xl bg-gray-400 caption-top border border-slate-300">
+            Fakelandia misdemeanours offloaded to date.
+          </caption>
           <thead>
-            <tr className=" text-darkest font-bold text-center p-12">
-              <th>Citizen Id:</th>
-              <th>Misdemeanour:</th>
-              <th>Date:</th>
+            <tr className="font-bold text-left p-12  bg-gray-400">
+              <th className="border border-slate-300">Citizen Id:</th>
+              <th className="border border-slate-300">Date:</th>
+              <th className="border border-slate-300">Misdemeanour:</th>
+              <th className="border border-slate-300">Random Punishment:</th>
             </tr>
           </thead>
           <tbody>
-            {misdemeanours.map((misdemeanour) => {
-              return (
-                <tr>
-                  <td>{misdemeanour.citizenId}</td>
-                  <td>{misdemeanour.misdemeanour}</td>
-                  <td>{misdemeanour.date}</td>
-                </tr>
-              );
-            })}
+            {misdemeanours.map((misdemeanour) => (
+              <MisdemeanourList misdemeanour={misdemeanour} />
+            ))}
           </tbody>
         </table>
       </div>

@@ -1,9 +1,10 @@
 import Nav from "./nav";
 
 const Header: React.FC = () => (
-  <header className="header has-background-primary is-flex is-align-items-center is-justify-content-center">
-    <h1 className="title">REPUBLIC OF FAKELANDIA Ministry of Justice</h1>
+  <div>
+    <h1 className="pt-5 text-center text-5xl">REPUBLIC OF FAKELANDIA</h1>
+    <h2 className="pt-5 text-center text-3xl">Ministry of Justice</h2>
     <Nav />
-  </header>
+  </div>
 );
 export default Header;

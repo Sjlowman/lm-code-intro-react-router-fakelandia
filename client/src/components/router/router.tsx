@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import About from "../about/about";
 import Home from "../home/home";
 import Confession from "../confession/confession";
-import Misdemeanour from "../misdemeanour/misdemeanour";
+//import Misdemeanour from "../misdemeanour/misdemeanour";
 import ListMisdemeanours from "../misdemeanour/listMisdemeanour";
 /* Check this line - testing the list function with this route
 <Route path="misdemeanourAll" element={<DisplayAllMisdemeanours />} /> */
@@ -18,7 +18,6 @@ const Router: React.FC = () => (
       <Route path="about" element={<About />} />
       <Route path="help" element={<Help />} />
       <Route path="confession" element={<Confession />} />
-      <Route path="misdemeanour" element={<Misdemeanour />} />
       <Route path="allmisdemeanours" element={<ListMisdemeanours />} />
       <Route path="*" element={<NotFound />} />
     </Route>

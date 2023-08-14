@@ -1,7 +1,9 @@
 const Footer: React.FC = () => (
-  <footer className="has-background-dark p-5 has-text-light has-text-centered">
-    <p>Ministry of Justice for the Republic of Fakelandia</p>
-    <p>Behave yourself TM</p>
+  <footer className="text-center">
+    <p className="text-center text-2xl">
+      Ministry of Justice for the Republic of Fakelandia
+    </p>
+    <p className="text-center text-xl">Behave yourself ™</p>
   </footer>
 );
 

@@ -1,7 +1,7 @@
 //const Home : React.FC = () => <>Home!</>;
 
 const Home: React.FC = () => (
-  <section className="content">
+  <section className="text-center text-3xl">
     <h2 className=" text-red-400">Welcome</h2>
     <p>
       Welcome to the <em>Fakelandia</em> Crimewatch
