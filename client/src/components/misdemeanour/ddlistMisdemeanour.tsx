@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { LOCAL_API_BASE_URL } from "../../api/config/config";
 //import { useParams, Link } from "react-router-dom";
-import MisdemeanourList from "./displayMisdemeanour";
+import MisdemeanourList from "./dddisplayMisdemeanour";
 import { MisdemeanourKind } from "../../../types/misdemeanours.types";
+import Dropdown from "./dropdown";
 
 interface Misdemeanour {
   citizenId: number;
@@ -11,18 +12,25 @@ interface Misdemeanour {
   date: string; // stringified for easy sending via HTTP rather than storing the full Date object
 }
 
-const ListMisdemeanours: React.FC = () => {
+const DDListMisdemeanours: React.FC = () => {
   const [misdemeanours, setMisdemeanours] = useState<Misdemeanour[]>([]);
   const effectCalled = useRef<boolean>(false);
-  const numberOfMisdemeanours = 10;
-
+  const options = [
+    { misdemeanour: "rudeness", label: "Mild Public Rudeness 🤪" },
+    {
+      misdemeanour: "vegetables",
+      label: "Not Eating Your Vegetables 🥗",
+    },
+    { misdemeanour: "lift", label: "Speaking in a Lift 🗣" },
+    { misdemeanour: "united", label: "Supporting Manchester United 😈" },
+  ];
   //const { categoryId } = useParams();
 
   useEffect(() => {
     const fetchMisdemeanours = async () => {
       try {
         const response = await axios.get(
-          LOCAL_API_BASE_URL + "/misdemeanours/" + numberOfMisdemeanours
+          LOCAL_API_BASE_URL + "/misdemeanours/6"
         );
         setMisdemeanours(response.data.misdemeanours);
       } catch (error) {
@@ -35,38 +43,6 @@ const ListMisdemeanours: React.FC = () => {
     effectCalled.current = true;
   }, []);
 
-  const getInitialState = () => {
-    const value = "all";
-    return value;
-  };
-
-  const [value, setValue] = useState(getInitialState);
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
-
-  console.log(value);
-  /* if(value=="all") {
-    const displayMisdemeanours = misdemeanours;
-  }
-  else{ */
-  const displayMisdemeanours = misdemeanours.filter(
-    (misdemeanour) => misdemeanour.misdemeanour == value
-  );
-  //};
-  console.log(displayMisdemeanours);
-
-  const displayOrNot = (misdemeanour: Misdemeanour) => {
-    if (value == "all") {
-      return misdemeanour;
-    } else if (misdemeanour.misdemeanour == value) {
-      return misdemeanour;
-    } else {
-      return null;
-    }
-  };
-
   return (
     <section className="w-full">
       <div className="pt-5 pb-7 h-100 text-xl  text-center">
@@ -74,39 +50,24 @@ const ListMisdemeanours: React.FC = () => {
         far. Will you join them in confessing? It's very uplifting
       </div>
       <div className="px-12 flex flex-col gap-y-12;">
+        <div>
+          <Dropdown placeHolder="Select..." options={options} />
+        </div>
         <table className="table-fixed border-separate border border-slate-400">
           <caption className="font-bold text-2xl bg-gray-400 caption-top border border-slate-300">
             Fakelandia misdemeanours offloaded to date.
           </caption>
+
           <thead>
             <tr className="font-bold text-left p-12  bg-gray-400">
               <th className="border border-slate-300">Citizen Id:</th>
               <th className="border border-slate-300">Date:</th>
-              <th className="border border-slate-300">
-                {" "}
-                <label htmlFor="filter"> Misdemeanour </label>
-                <select
-                  id="filter"
-                  name="filter"
-                  value={value}
-                  onChange={handleChange}
-                >
-                  <option value="all"> All</option>
-                  <option value="rudeness"> Mild Public Rudeness 🤪</option>
-                  <option value="lift"> Speaking in a Lift 🗣</option>
-                  <option value="vegetables">
-                    Not Eating Your Vegetables 🥗
-                  </option>
-                  <option value="united">
-                    Supporting Manchester United 😈
-                  </option>
-                </select>
-              </th>
+              <th className="border border-slate-300">Misdemeanour:</th>
               <th className="border border-slate-300">Random Punishment:</th>
             </tr>
           </thead>
           <tbody>
-            {misdemeanours.filter(displayOrNot).map((misdemeanour) => (
+            {misdemeanours.map((misdemeanour) => (
               <MisdemeanourList misdemeanour={misdemeanour} />
             ))}
           </tbody>
@@ -116,4 +77,4 @@ const ListMisdemeanours: React.FC = () => {
   );
 };
 
-export default ListMisdemeanours;
+export default DDListMisdemeanours;
