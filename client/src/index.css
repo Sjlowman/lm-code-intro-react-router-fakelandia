@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button-primary {
+  background-color: #2732fd;
+  color: #fff;
+  border: none;
+  padding: 1em 2em;
+  border-radius: 5px;
+}
+.button-primary:hover {
+  background-color: #062781;
+}
+
+.button-primary:focus {
+  background-color: #168d54;
+  outline-color: transparent;
+  outline-style: solid;
+  box-shadow: 0 0 0 4px #7dbfe8;
+}
+.button-primary:active {
+  background-color: #ffbf00;
+}
