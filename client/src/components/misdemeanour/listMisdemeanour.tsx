@@ -46,16 +46,10 @@ const ListMisdemeanours: React.FC = () => {
     setValue(e.target.value);
   };
 
-  console.log(value);
-  /* if(value=="all") {
-    const displayMisdemeanours = misdemeanours;
-  }
-  else{ */
-  const displayMisdemeanours = misdemeanours.filter(
+  /* const displayMisdemeanours = misdemeanours.filter(
     (misdemeanour) => misdemeanour.misdemeanour == value
   );
-  //};
-  console.log(displayMisdemeanours);
+  */
 
   const displayOrNot = (misdemeanour: Misdemeanour) => {
     if (value == "all") {

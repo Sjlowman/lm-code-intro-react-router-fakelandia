@@ -2,8 +2,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
   subject: string;
-  contactReason: string;
-  confessionDetail: string;
+  details: string;
+  reason: string;
 };
 enum ContactEnum {
   rudeness = "Mild Public Rudeness 🤪",
@@ -15,8 +15,8 @@ enum ContactEnum {
 
 interface IFormInput {
   subject: string;
-  contactReason: ContactEnum;
-  contactLongText: string;
+  details: string;
+  reason: ContactEnum;
 }
 
 const Confession: React.FC = () => {
@@ -61,7 +61,7 @@ const Confession: React.FC = () => {
           <select
             className="border-solid border-gray-300 border py-2 px-4 w-full
             rounded text-gray-800"
-            {...register("contactReason", { required: true })}
+            {...register("reason", { required: true })}
           >
             <option value="rudeness">"Mild Public Rudeness 🤪"</option>
             <option value="vegetables">"Not Eating Your Vegetables 🥗"</option>
@@ -76,15 +76,15 @@ const Confession: React.FC = () => {
             className="mt-4 border-solid border-gray-300 border py-20 px-4 w-full
             rounded text-gray-900"
             rows={5}
-            {...register("contactLongText", {
+            {...register("details", {
               required: "Please give a brief description",
 
               maxLength: 400,
             })}
           />
-          {errors.contactLongText && (
+          {errors.details && (
             <div className="mb-3 text-normal text-red-500 ">
-              {errors.contactLongText.message}
+              {errors.details.message}
             </div>
           )}
         </div>
