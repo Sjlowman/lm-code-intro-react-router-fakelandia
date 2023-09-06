@@ -15,4 +15,10 @@ export type Misdemeanour = {
   date: string; // we'll stringify this for easy sending via HTTP rather than storing the full Date object
 };
 
+export type ConfessionInput = {
+  subject: string;
+  details: string;
+  reason: MisdemeanourKind | JustTalk;
+};
+
 export type MisdemeanourList = Array<Misdemeanour>;

@@ -14,7 +14,7 @@ interface Misdemeanour {
 const ListMisdemeanours: React.FC = () => {
   const [misdemeanours, setMisdemeanours] = useState<Misdemeanour[]>([]);
   const effectCalled = useRef<boolean>(false);
-  const numberOfMisdemeanours = 10;
+  const numberOfMisdemeanours = 5;
 
   //const { categoryId } = useParams();
 
@@ -45,11 +45,6 @@ const ListMisdemeanours: React.FC = () => {
   const handleChange = (e) => {
     setValue(e.target.value);
   };
-
-  /* const displayMisdemeanours = misdemeanours.filter(
-    (misdemeanour) => misdemeanour.misdemeanour == value
-  );
-  */
 
   const displayOrNot = (misdemeanour: Misdemeanour) => {
     if (value == "all") {

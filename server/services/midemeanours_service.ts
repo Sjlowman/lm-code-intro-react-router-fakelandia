@@ -1,55 +1,57 @@
 import {
-	JustTalk,
-	JUST_TALK,
-	Misdemeanour,
-	MisdemeanourKind,
-	MISDEMEANOURS,
-} from '../types/misdemeanours.types';
-import { generateMisdemeanours } from './generate_misdemeanours';
+  JustTalk,
+  JUST_TALK,
+  Misdemeanour,
+  MisdemeanourKind,
+  MISDEMEANOURS,
+} from "../types/misdemeanours.types";
+import { generateMisdemeanours } from "./generate_misdemeanours";
 
 export async function getMisdemeanours(
-	amount: number
+  amount: number
 ): Promise<Misdemeanour[]> {
-	// in the real world we might call a db here, but we have a function
-	// that generates random misdemeanours so that'll do instead
-	return await generateMisdemeanours(amount);
+  // in the real world we might call a db here, but we have a function
+  // that generates random misdemeanours so that'll do instead
+  return await generateMisdemeanours(amount);
 }
 
 export type ConfessionInput = {
-	subject: string;
-	details: string;
-	reason: MisdemeanourKind | JustTalk;
+  subject: string;
+  details: string;
+  reason: MisdemeanourKind | JustTalk;
 };
 
 export function weaklyValidateConfession(body: any) {
-	if (!body) return false;
+  console.log(body);
+  if (!body) return false;
 
-	if (
-		!body.reason ||
-		!(MISDEMEANOURS.includes(body.reason) || body.reason === JUST_TALK)
-	) {
-		return false;
-	}
+  if (
+    !body.reason ||
+    !(MISDEMEANOURS.includes(body.reason) || body.reason === JUST_TALK)
+  ) {
+    return false;
+  }
 
-	return body.subject !== undefined && body.details !== undefined;
+  return body.subject !== undefined && body.details !== undefined;
 }
 
 export async function handleConfession(confession: ConfessionInput) {
-	if (confession.reason === 'just-talk') {
-		console.log(
-			`🗣️ You just want to talk about ${confession.subject}. Thanks! 💜`
-		);
-		return {
-			success: true,
-			justTalked: true,
-			message: 'Thanks for talking to us.',
-		};
-	}
+  if (confession.reason === "just-talk") {
+    console.log(
+      `🗣️ You just want to talk about ${confession.subject}. Thanks! 💜`
+    );
+    return {
+      success: true,
+      justTalked: true,
+      message: "Thanks for talking to us.",
+    };
+  }
 
-	console.log(`💡 Confession received.`);
-	return {
-		success: true,
-		justTalked: false,
-		message: 'Confession received.',
-	};
+  console.log(`💡 Confession received.`);
+  /* Add a function call here to send the new misdemeanour info to the object */
+  return {
+    success: true,
+    justTalked: false,
+    message: "Confession received.",
+  };
 }

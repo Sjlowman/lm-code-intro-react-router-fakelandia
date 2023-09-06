@@ -1,10 +1,12 @@
 import { useForm, SubmitHandler } from "react-hook-form";
+import React, { useState } from "react";
+import axios from "axios";
+import { LOCAL_API_BASE_URL } from "../../api/config/config";
+import { ConfessionInput } from "../../../types/misdemeanours.types";
 
-type Inputs = {
-  subject: string;
-  details: string;
-  reason: string;
-};
+//import { handleConfession } from "../../../../server/services/midemeanours_service.ts";
+//import { ConfessionInput } from "../../../../server/services/midemeanours_service.ts";
+
 enum ContactEnum {
   rudeness = "Mild Public Rudeness 🤪",
   vegetables = "Not Eating Your Vegetables 🥗",
@@ -19,13 +21,35 @@ interface IFormInput {
   reason: ContactEnum;
 }
 
-const Confession: React.FC = () => {
+const ConfessionEntry: React.FC = () => {
+  //const [confessionInput, setConfessionInput] = useState<ConfessionInput[]>([]);
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
+  } = useForm<ConfessionInput>();
+  const onSubmit: SubmitHandler<ConfessionInput> = (ConfessionEntry) =>
+    PostConfession(ConfessionEntry);
+
+  const PostConfession = async (confession: ConfessionInput) => {
+    console.log("I'm inside!");
+    console.log(confession);
+    const confessionToUpload = confession;
+    console.log("Tell me the new variable");
+    console.log(confessionToUpload.subject);
+
+    try {
+      if (confession === undefined) return;
+      console.log("I'm after the undefined check!");
+
+      const response = await axios.post(
+        LOCAL_API_BASE_URL + "/confess/" + confession
+      );
+    } catch (error) {
+      console.error("Error sending confession to server:", error);
+    }
+  };
+
   return (
     <section>
       <p className="pt-8 px-20 text-2xl">
@@ -96,4 +120,4 @@ const Confession: React.FC = () => {
   );
 };
 
-export default Confession;
+export default ConfessionEntry;
